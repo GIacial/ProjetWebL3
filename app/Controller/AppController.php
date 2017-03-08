@@ -31,4 +31,38 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+	public $components = array('Flash',
+								'Auth' => array(
+												'loginRedirect' => array(//ou on va en cas de connexion
+																		'controller' => 'produit',
+																		'action' => 'index',
+																		),
+												'logoutRedirect' => array(//ou on va en cas de deconnexion
+																		'controller' => 'utilisateur',
+																		'action' => 'connexion',
+																		),
+												'authenticate' => array(//comment on s'identifie
+																	'Form' => array(
+																				'userModel' => 'Utilisateur',	//tab a voir
+																				'fields' => array('username' => 'identifiant',
+																								 'password' => 'motdepasse'
+																								 ),	//colonne a comp
+																				//'passwordHasher' => 'Blowfish',	//le type de hasher
+																				),
+																		),
+												'loginAction' => array(//ou il faut aller si il faut s'auth
+																		'controller' => 'utilisateur',
+																		'action' => 'connexion',
+																		),
+												//'authorize' => array('Controller'), // active la verification isAuthorize
+												'authError' => 'Vous devez être connecté-e pour voir cette page.',//msg si pas auth
+												'loginError' => 'Login ou mot de passe incorrect, réessayez svp.',//prob de auth
+											),
+
+	);
+	
+	public function beforeFilter(){
+	$this->Auth->allow('index');// les actions 'index' de TOUS les controllers sont accessibles sans avoir besoin d'être 		authentifié
+	}
 }
