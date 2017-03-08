@@ -1,6 +1,7 @@
 <?php
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');   //pour le hasher
 
-class Utilisateur extends appModel
+class Utilisateur extends AppModel
 {
 	public $useTable = 'utilisateurs';
     public $primaryKey = 'id';
@@ -15,7 +16,16 @@ class Utilisateur extends appModel
         ),
     
     );
+
+    function beforeSave($options = array()){
+
+        $passwordHasher = new BlowfishPasswordHasher();
+        $this->data[$this->alias]['motdepasse'] = $passwordHasher->hash($this->data[$this->alias]['motdepasse']);
+        $this->data[$this->alias]['isadmin'] = 0;
+        return true;
+    }
     
-    //public $hasAndBelongsToMany = array(); // non utilisé dans ce cours
-    //public $hasOne = array();              // non utilisé dans ce cours
+    
 }
+
+?>

@@ -48,7 +48,7 @@ class AppController extends Controller {
 																				'fields' => array('username' => 'identifiant',
 																								 'password' => 'motdepasse'
 																								 ),	//colonne a comp
-																				//'passwordHasher' => 'Blowfish',	//le type de hasher
+																				'passwordHasher' => 'Blowfish',	//le type de hasher
 																				),
 																		),
 												'loginAction' => array(//ou il faut aller si il faut s'auth
@@ -63,6 +63,6 @@ class AppController extends Controller {
 	);
 	
 	public function beforeFilter(){
-	$this->Auth->allow('index');// les actions 'index' de TOUS les controllers sont accessibles sans avoir besoin d'être 		authentifié
+		$this->Auth->allow('index');// les actions 'index' de TOUS les controllers sont accessibles sans avoir besoin d'être 		authentifié
 	}
 }
