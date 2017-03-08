@@ -1,0 +1,65 @@
+2017-02-20 17:44:20 Error: [MissingControllerException] Controller class Cakephp-2.9.5Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Cakephp-2.9.5Controller',
+  'plugin' => NULL,
+)
+Request URL: /CakePhp/cakephp-2.9.5/
+Stack Trace:
+#0 C:\wamp64\www\CakePhp\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-20 17:48:35 Error: [MissingControllerException] Controller class Cakephp-2.9.5Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Cakephp-2.9.5Controller',
+  'plugin' => NULL,
+)
+Request URL: /CakePhp/cakephp-2.9.5/
+Stack Trace:
+#0 C:\wamp64\www\CakePhp\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-20 17:50:49 Error: [MissingControllerException] Controller class VoitureController could not be found.
+Exception Attributes: array (
+  'class' => 'VoitureController',
+  'plugin' => NULL,
+)
+Request URL: /CakePhp/Voiture
+Stack Trace:
+#0 C:\wamp64\www\CakePhp\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-06 15:45:46 Error: [MissingTableException] Table Produits for model Produit was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'Produits',
+  'class' => 'Produit',
+  'ds' => 'default',
+)
+Request URL: /ProjetWeb/produit
+Stack Trace:
+#0 C:\wamp64\www\ProjetWeb\lib\Cake\Model\Model.php(3667): Model->setSource('Produits')
+#1 C:\wamp64\www\ProjetWeb\lib\Cake\Model\Model.php(3038): Model->getDataSource()
+#2 C:\wamp64\www\ProjetWeb\lib\Cake\Model\Model.php(3010): Model->_readDataSource('all', Array)
+#3 C:\wamp64\www\ProjetWeb\app\Model\Produit.php(29): Model->find('all', Array)
+#4 C:\wamp64\www\ProjetWeb\app\Controller\ProduitController.php(16): Produit->getProduitEnVente()
+#5 [internal function]: ProduitController->index()
+#6 C:\wamp64\www\ProjetWeb\lib\Cake\Controller\Controller.php(491): ReflectionMethod->invokeArgs(Object(ProduitController), Array)
+#7 C:\wamp64\www\ProjetWeb\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#8 C:\wamp64\www\ProjetWeb\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(ProduitController), Object(CakeRequest))
+#9 C:\wamp64\www\ProjetWeb\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2017-03-08 13:08:57 Error: [MissingTableException] Table l31617_Produits for model Produit was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'l31617_Produits',
+  'class' => 'Produit',
+  'ds' => 'default',
+)
+Request URL: /ProjetWebL3/produit
+Stack Trace:
+#0 C:\wamp64\www\ProjetWebL3\lib\Cake\Model\Model.php(3667): Model->setSource('Produits')
+#1 C:\wamp64\www\ProjetWebL3\lib\Cake\Model\Model.php(3038): Model->getDataSource()
+#2 C:\wamp64\www\ProjetWebL3\lib\Cake\Model\Model.php(3010): Model->_readDataSource('all', Array)
+#3 C:\wamp64\www\ProjetWebL3\app\Model\Produit.php(29): Model->find('all', Array)
+#4 C:\wamp64\www\ProjetWebL3\app\Controller\ProduitController.php(16): Produit->getProduitEnVente()
+#5 [internal function]: ProduitController->index()
+#6 C:\wamp64\www\ProjetWebL3\lib\Cake\Controller\Controller.php(491): ReflectionMethod->invokeArgs(Object(ProduitController), Array)
+#7 C:\wamp64\www\ProjetWebL3\lib\Cake\Routing\Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#8 C:\wamp64\www\ProjetWebL3\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(ProduitController), Object(CakeRequest))
+#9 C:\wamp64\www\ProjetWebL3\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
