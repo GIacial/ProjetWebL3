@@ -6,7 +6,7 @@ class UtilisateurController extends AppController {
     public $viewPath = 'UtilisateurView';    //le nom du sous repertoire des vue du controlleur
 
     public function index(){
-    	$this->redirect(array('action' => 'connexion'));
+
     }
 
     public function connexion(){
@@ -29,7 +29,7 @@ class UtilisateurController extends AppController {
     		$this->Utilisateur->id = null ;
     		if($this->Utilisateur->save($this->request->data)){
     			$this->Flash->success('Vous êtes inscrit');
-    			$this->redirect(array('action' => 'connexion'));
+    			$this->redirect(array('action' => 'index'));
     		}
     		$this->Flash->error('Erreur lors de l\'ajout de l\'utilsateur');
     	}

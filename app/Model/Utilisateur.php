@@ -18,10 +18,31 @@ class Utilisateur extends AppModel
     );
 
     function beforeSave($options = array()){
+        //verification
+        if($this->data[$this->alias]['motdepasse'] == "") return false;
+        if($this->data[$this->alias]['identifiant'] == "") return false;
+
+        //tra,sformation
+        if($this->data[$this->alias]['nom'] == ""){
+            $this->data[$this->alias]['nom'] = null;
+        }
+
+        if($this->data[$this->alias]['prenom'] == ""){
+            $this->data[$this->alias]['prenom'] = null;
+        }
 
         $passwordHasher = new BlowfishPasswordHasher();
-        $this->data[$this->alias]['motdepasse'] = $passwordHasher->hash($this->data[$this->alias]['motdepasse']);
-        $this->data[$this->alias]['isadmin'] = 0;
+        $this->data[$this->alias]['motdepasse'] = $passwordHasher->hash($this->data[$this->alias]['motdepasse']);//cryptage
+
+         if(AuthComponent::user() != null){
+            if(!AuthComponent::user()['isadmin']){
+                 $this->data[$this->alias]['isadmin'] = false;  //si tu n'est pas un admin tu ne peux pas créé d'admin
+            }
+         }
+         else{
+             $this->data[$this->alias]['isadmin'] = false;  //si tu n'est pas un admin tu ne peux pas créé d'admin
+         }
+
         return true;
     }
     

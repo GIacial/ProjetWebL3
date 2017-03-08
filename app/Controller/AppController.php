@@ -40,7 +40,7 @@ class AppController extends Controller {
 																		),
 												'logoutRedirect' => array(//ou on va en cas de deconnexion
 																		'controller' => 'utilisateur',
-																		'action' => 'connexion',
+																		'action' => 'index',
 																		),
 												'authenticate' => array(//comment on s'identifie
 																	'Form' => array(
