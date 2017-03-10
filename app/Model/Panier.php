@@ -38,4 +38,10 @@ class Panier extends AppModel{
         
     }
 
+    function beforeSave($options = array()){
+        if($this->data[$this->alias]['nombre']<=0) return false;
+        if($this->data[$this->alias]['nombre']> $this->data[$this->alias]['stock']) return false;
+        $this->data[$this->alias]['client_id'] = AuthComponent::user()['id'];
+        return true;
+    }
 }
