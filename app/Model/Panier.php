@@ -22,4 +22,17 @@ class Panier extends AppModel{
             'foreignKey' => 'client_id',           //le nom de la col referente de clé
         ),
     );
+    
+    public function getPanierUser (){
+        return $this->find('all', array(
+            'conditions'=> array(
+                'nombre >' => 0,
+                'client_id =' => $this->Auth->id,
+            
+            ),
+        ),                  
+        );
+        
+    }
+
 }
