@@ -25,12 +25,15 @@ class Panier extends AppModel{
     
     public function getPanierUser (){
         return $this->find('all', array(
-            'conditions'=> array(
+            'conditions'=> array( //where
                 'nombre >' => 0,
-                'client_id =' => $this->Auth->id,
+                'client_id =' => AuthComponent::user(),
             
             ),
-        ),                  
+            'recursive'=> '1', //Join 1 table de distance
+            
+            
+        )                  
         );
         
     }
