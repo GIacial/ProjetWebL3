@@ -6,21 +6,17 @@
 	 for( $i = 0 ; $i< count($tab) ; $i++){
 	 	echo '<div>';
 	 	echo '<p>'.$tab[$i]['Produit']['libelle'].'  '.$tab[$i]['Produit']['prix'].'€</p>';
-	 	echo $this->Form->number('nombre',array(
+	 	echo $this->Form->number('nombre.',array(
 	 											'min' => '0',
 	 											'default' => '0',
 	 											'max' => $tab[$i]['Produit']['stock'],
 	 											));
-	 	echo $this->Form->input('produit_id',array(
+	 	echo $this->Form->input('produit_id.',array(
 	 										'default' => $tab[$i]['Produit']['produit_id'],
 	 										'type' => 'hidden',
 	 										)
 	 							);
-	 	echo $this->Form->input('stock',array(
-	 										'default' => $tab[$i]['Produit']['stock'],
-	 										'type' => 'hidden',
-	 										)
-	 							);
+	 	
 	 	echo '</div>';
 	 }
 	 if(AuthComponent::user() != null){

@@ -13,15 +13,32 @@ class ProduitController extends AppController {
 
     public function index(){
     	if($this->request->is('post')){
-    		$this->Produit->Panier->id = null ;
     		debug($this->request->data);
-    		/*if($this->Produit->Panier->save($this->request->data)){
+    		if(isset($this->request->data['Panier']['produit_id'])){
+    			$ok = true ;
+    			for ($i=0 ; $i< count($this->request->data['Panier']['produit_id']) && $ok ; $i++){
+
+    				$this->Produit->Panier->id = null ;
+    				if($this->request->data['Panier']['nombre'][$i] != 0){
+
+    						$response['Panier']['nombre'] = $this->request->data['Panier']['nombre'][$i];
+    						$response['Panier']['produit_id'] = $this->request->data['Panier']['produit_id'][$i];
+    					
+    					
+    					$ok = $this->Produit->Panier->addPanier($response) ;
+
+    				}
+
+    			}
+	    		
+    		}
+    		if($ok){
     			$this->Flash->success('Ajout au panier effectué');
-    			//$this->redirect(array('action' => 'index'));
+    			$this->redirect(array('action' => 'index'));
     		}
     		else{
     			$this->Flash->error('Erreur lors de l\'ajout au panier');
-    		}*/
+    		}
     	}
 
         $response = $this->Produit->getProduitEnVente();

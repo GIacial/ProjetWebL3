@@ -28,4 +28,11 @@ class Produit extends AppModel{
            ),
        ));
     }
+
+    public function getStock($produit_id){
+      return $this->find('first', array(  'conditions' => array('produit_id =' => $produit_id
+                                                                )
+                                        )
+                        );
+    }
 }

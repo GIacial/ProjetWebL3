@@ -38,10 +38,50 @@ class Panier extends AppModel{
         
     }
 
+    public function getProduitDansPanier($produit_id){
+        return $this->find('first',array(
+                                        'conditions'=> array( //where
+                                                            'produit_id =' => $produit_id,
+                                                            'client_id =' => AuthComponent::user(),
+                                        
+                                                            )
+                                        )
+                            );
+    }
+
     function beforeSave($options = array()){
         if($this->data[$this->alias]['nombre']<=0) return false;
-        if($this->data[$this->alias]['nombre']> $this->data[$this->alias]['stock']) return false;
-        $this->data[$this->alias]['client_id'] = AuthComponent::user()['id'];
+         $this->data[$this->alias]['client_id'] = AuthComponent::user()['id'];
+        
+        return true;
+    }
+
+
+     private function beforeSaveAddPanier($data){
+        if($data[$this->alias]['nombre']> $this->Produit->getStock($data[$this->alias]['produit_id'])[$this->Produit->alias]['stock']) return null;
+
+        $response = $this->getProduitDansPanier($data[$this->alias]['produit_id']);
+        if(isset($response[$this->alias])){ //deja dans le panier
+
+            $data[$this->alias]['nombre'] = $data[$this->alias]['nombre'] + $response[$this->alias]['nombre'];
+            $this->id = $response[$this->alias]['panier_id'];
+            
+        }
+        return $data;
+    }
+
+    private function afterSaveAddPanier($data){
+        //diminution des stocks
+        $res = $this->Produit->getStock($data[$this->alias]['produit_id']);
+        $res[$this->Produit->alias]['stock'] -= $data[$this->alias]['nombre'];
+        $this->Produit->save($res);
+    }
+
+    public function addPanier ($data){
+        $data = $this->beforeSaveAddPanier($data);
+        if($data == null) return false;
+        if(!$this->save($data)) return false;
+        $this->afterSaveAddPanier($data);
         return true;
     }
 }
