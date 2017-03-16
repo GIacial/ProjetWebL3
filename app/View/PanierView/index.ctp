@@ -4,22 +4,31 @@
 echo '<h1> Panier de '.AuthComponent::user()['nom'].' '.AuthComponent::user()['prenom'].'</h1><hr/>';
 
 $prixTotal = 0;
+echo '<table>';
+echo '<thead><tr>
+<th> Nom</th>
+<th>Nombre</th>
+<th> Prix Unitaire</th>
+<th> Prix du lot</th>
+<th> </th>
+</tr> </thead> <tbody>';
 for ( $i =0 ; $i< count($resPanier) ; $i++){
-	echo '<div>';
-	echo '<p>'.$resPanier[$i]['Produit']['libelle'].'</p>';	
-	echo '<p> Prix Unitaire :'.$resPanier[$i]['Produit']['prix'].'€</p>';	
-	echo '<p> Nombre :'.$resPanier[$i]['Panier']['nombre'].'</p>';
+	echo '<tr>';
+	echo '<td>'.$resPanier[$i]['Produit']['libelle'].'</td>';	
+	echo '<td> '.$resPanier[$i]['Panier']['nombre'].'</td>';	
+	echo '<td> '.$resPanier[$i]['Produit']['prix'].'€</td>';
 	$prixLot = $resPanier[$i]['Panier']['nombre']*$resPanier[$i]['Produit']['prix'];
 	$prixTotal += $prixLot;
-	echo '<p> Prix du lot :'.$prixLot.'€</p>';
-	echo $this->Html->link('Supprimer',array(
+	echo '<td> '.$prixLot.'€</td>';
+	echo '<td>'.$this->Html->link('Supprimer',array(
 											'controller' => 'Panier',
 											'action' => 'supprimerArticle',
 											$resPanier[$i]['Panier']['panier_id']
 											)
-	);
-	echo '</div> <hr/>';
+	).'</td>';
+	echo '</tr>';
 }
+echo '</tbody></table>';
 
 echo '<div> Prix total :'.$prixTotal.'€</div>';
 

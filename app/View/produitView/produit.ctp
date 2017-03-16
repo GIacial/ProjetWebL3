@@ -3,10 +3,15 @@
 	<?php
 
 	 echo $this->Form->create('Panier');
-	 for( $i = 0 ; $i< count($tab) ; $i++){
-	 	echo '<div>';
-	 	echo '<p>'.$tab[$i]['Produit']['libelle'].'  '.$tab[$i]['Produit']['prix'].'€</p>';
-	 	echo $this->Form->number('nombre.',array(
+	 echo '<table>';
+echo '<thead><tr>
+<th> Nom</th>
+<th> Prix Unitaire</th>
+<th> Nombre</th></tr> </thead> <tbody>';
+for( $i = 0 ; $i< count($tab) ; $i++){
+	 	echo '<tr>';
+	 	echo '<td>'.$tab[$i]['Produit']['libelle'].'</td><td>'.$tab[$i]['Produit']['prix'].'€</td>';
+	 	echo '<td>'.$this->Form->number('nombre.',array(
 	 											'min' => '0',
 	 											'default' => '0',
 	 											'max' => $tab[$i]['Produit']['stock'],
@@ -15,10 +20,12 @@
 	 										'default' => $tab[$i]['Produit']['produit_id'],
 	 										'type' => 'hidden',
 	 										)
-	 							);
+	 							).'</td>';
 	 	
-	 	echo '</div>';
+	 	echo '</tr>';
 	 }
+echo '</tbody></table>';
+	 
 	 if(AuthComponent::user() != null){
 	 echo $this->Form->end('Ajouter au panier');
 	}

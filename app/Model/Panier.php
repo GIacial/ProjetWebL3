@@ -78,9 +78,12 @@ class Panier extends AppModel{
     }
 
     public function addPanier ($data){
+        if(!isset($data[$this->alias]['nombre']))return false;
+        $nombre = $data[$this->alias]['nombre'];    //memo de la nouvelle prise
         $data = $this->beforeSaveAddPanier($data);
-        if($data == null) return false;
+        if($data == null) return false;    
         if(!$this->save($data)) return false;
+        $data[$this->alias]['nombre'] = $nombre;    //on remets le nb d'acticle en plus et pas le total
         $this->afterSaveAddPanier($data);
         return true;
     }
@@ -93,12 +96,12 @@ class Panier extends AppModel{
                                         
                                                             )
                                         ));
-        debug($res);
+        //debug($res);
         if(isset ($res[$this->alias])){
             $this->delete($panier_id,false);
             $prod = $this->Produit->getStock($res[$this->alias]['produit_id']);
             $this->Produit->id = $res[$this->alias]['produit_id'];
-            $prod[$this->Produit->alias]['stock'] = $prod[$this->Produit->alias]['stock']+$res[$this->alias]['nombre'];
+            $prod[$this->Produit->alias]['stock'] += $res[$this->alias]['nombre'];
             $this->Produit->save($prod);
 
             return true;
