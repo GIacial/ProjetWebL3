@@ -10,6 +10,18 @@ class PanierController extends AppController {
         $this->set('resPanier' , $response);     
     }
 
+    public function supprimerArticle($numLine){
+        $numLine += 0;
+        if($this->Panier->supprimerPanier($numLine)){
+            $this->Flash->success("Suppression effectué");
+        }
+        else{
+            $this->Flash->error("La Suppression à échoué");
+        }
+        
+        $this->redirect('index');
+    }
+
 
     public function beforeFilter(){
         parent::beforeFilter();

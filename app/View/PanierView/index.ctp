@@ -12,6 +12,12 @@ for ( $i =0 ; $i< count($resPanier) ; $i++){
 	$prixLot = $resPanier[$i]['Panier']['nombre']*$resPanier[$i]['Produit']['prix'];
 	$prixTotal += $prixLot;
 	echo '<p> Prix du lot :'.$prixLot.'€</p>';
+	echo $this->Html->link('Supprimer',array(
+											'controller' => 'Panier',
+											'action' => 'supprimerArticle',
+											$resPanier[$i]['Panier']['panier_id']
+											)
+	);
 	echo '</div> <hr/>';
 }
 
@@ -21,6 +27,4 @@ echo '<h1> donnée de connexion</h1>';
 echo debug(AuthComponent::user());
 echo '<h1> donnée de la requete</h1>';
 echo debug($resPanier);
-
-
 ?>

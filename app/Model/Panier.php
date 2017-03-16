@@ -84,4 +84,27 @@ class Panier extends AppModel{
         $this->afterSaveAddPanier($data);
         return true;
     }
+
+    public function supprimerPanier($panier_id){
+        $res = $this->find('first' ,array(
+                                        'conditions'=> array( //where
+                                                            'panier_id =' => $panier_id,
+                                                            'client_id =' => AuthComponent::user(),
+                                        
+                                                            )
+                                        ));
+        debug($res);
+        if(isset ($res[$this->alias])){
+            $this->delete($panier_id,false);
+            $prod = $this->Produit->getStock($res[$this->alias]['produit_id']);
+            $this->Produit->id = $res[$this->alias]['produit_id'];
+            $prod[$this->Produit->alias]['stock'] = $prod[$this->Produit->alias]['stock']+$res[$this->alias]['nombre'];
+            $this->Produit->save($prod);
+
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
