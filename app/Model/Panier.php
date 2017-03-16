@@ -88,7 +88,7 @@ class Panier extends AppModel{
         return true;
     }
 
-    public function supprimerPanier($panier_id){
+    public function supprimerPanier($panier_id ,$achat = false){
         $res = $this->find('first' ,array(
                                         'conditions'=> array( //where
                                                             'panier_id =' => $panier_id,
@@ -99,10 +99,12 @@ class Panier extends AppModel{
         //debug($res);
         if(isset ($res[$this->alias])){
             $this->delete($panier_id,false);
-            $prod = $this->Produit->getStock($res[$this->alias]['produit_id']);
-            $this->Produit->id = $res[$this->alias]['produit_id'];
-            $prod[$this->Produit->alias]['stock'] += $res[$this->alias]['nombre'];
-            $this->Produit->save($prod);
+            if(!$achat){
+                $prod = $this->Produit->getStock($res[$this->alias]['produit_id']);
+                $this->Produit->id = $res[$this->alias]['produit_id'];
+                $prod[$this->Produit->alias]['stock'] += $res[$this->alias]['nombre'];
+                $this->Produit->save($prod);
+            }
 
             return true;
         }

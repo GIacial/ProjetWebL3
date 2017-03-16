@@ -7,7 +7,9 @@
 echo '<thead><tr>
 <th> Nom</th>
 <th> Prix Unitaire</th>
-<th> Nombre</th></tr> </thead> <tbody>';
+<th> Nombre</th>
+<th> En Stock </th>
+</tr> </thead> <tbody>';
 for( $i = 0 ; $i< count($tab) ; $i++){
 	 	echo '<tr>';
 	 	echo '<td>'.$tab[$i]['Produit']['libelle'].'</td><td>'.$tab[$i]['Produit']['prix'].'€</td>';
@@ -21,6 +23,7 @@ for( $i = 0 ; $i< count($tab) ; $i++){
 	 										'type' => 'hidden',
 	 										)
 	 							).'</td>';
+	 	echo '<td>'.$tab[$i]['Produit']['stock'].'</td>';
 	 	
 	 	echo '</tr>';
 	 }

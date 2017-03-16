@@ -31,6 +31,16 @@ for ( $i =0 ; $i< count($resPanier) ; $i++){
 echo '</tbody></table>';
 
 echo '<div> Prix total :'.$prixTotal.'€</div>';
+	echo $this->Html->link('Vider Panier',array(
+											'controller' => 'Panier',
+											'action' => 'viderPanier',
+											)
+	);
+		echo $this->Html->link('Acheter',array(
+											'controller' => 'Panier',
+											'action' => 'achatPanier',
+											)
+	);
 
 echo '<h1> donnée de connexion</h1>';
 echo debug(AuthComponent::user());

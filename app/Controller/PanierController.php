@@ -22,6 +22,25 @@ class PanierController extends AppController {
         $this->redirect('index');
     }
 
+    public function viderPanier(){
+        $res = $this->Panier->getPanierUser();
+        for ($i =0 ; $i < count ($res) ; $i++){
+            $this->Panier->supprimerPanier($res[$i]['Panier']['panier_id']);
+        }
+        $this->Flash->success("Suppression effectué");
+        
+        $this->redirect('index');
+    }
+
+    public function achatPanier(){
+        $res = $this->Panier->getPanierUser();
+        for ($i =0 ; $i < count ($res) ; $i++){
+            $this->Panier->supprimerPanier($res[$i]['Panier']['panier_id'] , true);
+        }
+        $this->Flash->success("Achat effectué");
+        $this->redirect('index');
+    }
+
 
     public function beforeFilter(){
         parent::beforeFilter();
