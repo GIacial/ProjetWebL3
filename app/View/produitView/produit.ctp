@@ -1,7 +1,7 @@
 <div>
-
+    
 	<?php
-	  
+
 	 echo $this->Form->create('Panier');
 	 for( $i = 0 ; $i< count($tab) ; $i++){
 	 	echo '<div>';

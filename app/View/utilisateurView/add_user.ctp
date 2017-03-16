@@ -1,5 +1,7 @@
 <?php
 
+
+
 echo $this->Form->create('Utilisateur');
 echo $this->Form->input('identifiant');
 echo $this->Form->input('motdepasse', array( 'type'=> 'password',
