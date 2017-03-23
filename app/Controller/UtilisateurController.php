@@ -3,7 +3,7 @@
 class UtilisateurController extends AppController {
 
     public $uses = array('Utilisateur');      //Model a utiliser
-    public $viewPath = 'UtilisateurView';    //le nom du sous repertoire des vue du controlleur
+    public $viewPath = 'utilisateurView';    //le nom du sous repertoire des vue du controlleur
 
     public function index(){
 
