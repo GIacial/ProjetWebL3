@@ -27,7 +27,7 @@ class UtilisateurController extends AppController {
     public function addUser(){
     	if($this->request->is('post')){
     		$this->Utilisateur->id = null ;
-    		if($this->Utilisateur->save($this->request->data)){
+    		if($this->Utilisateur->addUser($this->request->data)){
     			$this->Flash->success('Vous êtes inscrit');
     			$this->redirect(array('action' => 'index'));
     		}
