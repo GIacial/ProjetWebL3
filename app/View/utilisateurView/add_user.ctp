@@ -14,7 +14,7 @@ echo $this->Form->input('anniversaire');
          echo $this->Form->input('isadmin');
     }
  }
-echo $this->Form->end('Comfirmer');
+echo $this->Form->end('Confirmer');
 
 
 

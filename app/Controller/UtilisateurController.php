@@ -35,6 +35,17 @@ class UtilisateurController extends AppController {
     	}
     }
 
+    public function profil(){
+        if($this->request->is('post')){
+            $this->Utilisateur->id = $this->Auth->user()['id'];
+            if($this->Utilisateur->save($this->request->data)){
+                $this->Flash->success('Vous avez modifié votre profil');
+            }else{
+                $this->Flash->error('Erreur lors de la modification du profil');
+            }
+        }
+    }
+    
     public function beforeFilter(){
     	parent::beforeFilter();
 		$this->Auth->allow('addUser');// les actions 'index' de TOUS les controllers sont accessibles sans avoir besoin d'être 		authentifié
