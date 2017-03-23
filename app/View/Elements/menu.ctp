@@ -19,7 +19,8 @@ echo '<nav>';
 
         }else{  //ADMIN          
             echo $this->Html->link(' Profil ',array('controller'=>'utilisateur', 'action'=>'profil'));
-            //$this->html->link('Gestion Client',array('controller'=>nomcontroller, 'action'=>fonction));
+            echo $this->html->link('Gestion Client',array(
+                'controller'=>'utilisateur', 'action'=>'gestionAdmin'));
             echo $this->Html->link(' Deconnexion ',array('controller'=>'utilisateur', 'action'=>'deconnexion'));
 
         }

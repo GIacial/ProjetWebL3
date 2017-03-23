@@ -41,7 +41,6 @@ class UtilisateurController extends AppController {
             if ($this->request->data['Utilisateur']['motdepasse']==''){
                 unset ($this->request->data['Utilisateur']['motdepasse']);
             }
-            debug($this->request->data);
             if($this->Utilisateur->save($this->request->data)){
                 $this->Flash->success('Vous avez modifié votre profil');
             }else{
