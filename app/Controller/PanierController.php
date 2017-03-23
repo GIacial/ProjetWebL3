@@ -12,7 +12,7 @@ class PanierController extends AppController {
 
     public function supprimerArticle($numLine){
         $numLine += 0;
-        if($this->Panier->supprimerPanier($numLine)){
+        if($this->Panier->supprimerPanier($numLine,$this->Auth->user()['id'])){
             $this->Flash->success("Suppression effectué");
         }
         else{
@@ -23,20 +23,14 @@ class PanierController extends AppController {
     }
 
     public function viderPanier(){
-        $res = $this->Panier->getPanierUser();
-        for ($i =0 ; $i < count ($res) ; $i++){
-            $this->Panier->supprimerPanier($res[$i]['Panier']['panier_id']);
-        }
+        $this->Panier->viderPanier($this->Auth->user()['id']);
         $this->Flash->success("Suppression effectué");
         
         $this->redirect('index');
     }
 
     public function achatPanier(){
-        $res = $this->Panier->getPanierUser();
-        for ($i =0 ; $i < count ($res) ; $i++){
-            $this->Panier->supprimerPanier($res[$i]['Panier']['panier_id'] , true);
-        }
+        $this->Panier->viderPanier($this->Auth->user()['id'],true);
         $this->Flash->success("Achat effectué");
         $this->redirect('index');
     }
@@ -46,8 +40,18 @@ class PanierController extends AppController {
         parent::beforeFilter();
 		$this->Auth->deny('index');
 	}
-}
 
+    public function isAuthorized($user){
+        
+        
+        if(!$user['isadmin']) return true;
+        
+
+        return parent::isAuthorized($user);
+
+    }
+
+}
 
 
 ?>

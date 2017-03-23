@@ -27,7 +27,7 @@ class Panier extends AppModel{
         return $this->find('all', array(
             'conditions'=> array( //where
                 'nombre >' => 0,
-                'client_id =' => AuthComponent::user(),
+                'client_id =' => AuthComponent::user()['id'],
             
             ),
             'recursive'=> '1', //Join 1 table de distance
@@ -88,15 +88,16 @@ class Panier extends AppModel{
         return true;
     }
 
-    public function supprimerPanier($panier_id ,$achat = false){
+    public function supprimerPanier($panier_id ,$id_client,$achat = false ){
+        
         $res = $this->find('first' ,array(
                                         'conditions'=> array( //where
                                                             'panier_id =' => $panier_id,
-                                                            'client_id =' => AuthComponent::user(),
+                                                            'client_id =' => $id_client,
                                         
                                                             )
                                         ));
-        //debug($res);
+        debug($res);
         if(isset ($res[$this->alias])){
             $this->delete($panier_id,false);
             if(!$achat){
@@ -110,6 +111,18 @@ class Panier extends AppModel{
         }
         else{
             return false;
+        }
+    }
+    public function viderPanier($id_client,$achat = false){
+        $res = $this->find('all', array(
+            'conditions'=> array( //where
+                'nombre >' => 0,
+                'client_id =' =>$id_client,
+            ),
+        )                  
+        );
+        for ($i =0 ; $i < count ($res) ; $i++){
+            $this->supprimerPanier($res[$i][$this->alias]['panier_id'] , $id_client,$achat);
         }
     }
 }

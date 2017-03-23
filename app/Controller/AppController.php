@@ -55,7 +55,7 @@ class AppController extends Controller {
 																		'controller' => 'utilisateur',
 																		'action' => 'connexion',
 																		),
-												//'authorize' => array('Controller'), // active la verification isAuthorize
+												'authorize' => array('Controller'), // active la verification isAuthorize
 												'authError' => 'Vous devez être connecté-e pour voir cette page.',//msg si pas auth
 												'loginError' => 'Login ou mot de passe incorrect, réessayez svp.',//prob de auth
 											),
@@ -63,6 +63,12 @@ class AppController extends Controller {
 	);
 	
 	public function beforeFilter(){
-		$this->Auth->allow('index');// les actions 'index' de TOUS les controllers sont accessibles sans avoir besoin d'être 		authentifié
+		//$this->Auth->allow('index');// les actions 'index' de TOUS les controllers sont accessibles sans avoir besoin d'être 		authentifié
 	}
+
+	  public function isAuthorized($user)
+    {
+        return false;
+        
+    }
 }

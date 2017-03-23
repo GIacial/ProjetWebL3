@@ -45,4 +45,12 @@ class ProduitController extends AppController {
         $this->set('tab' , $response);
         $this->render('produit');
     }
+
+     public function isAuthorized($user){
+      
+        if(!$user['isadmin']) return true;
+        
+        return parent::isAuthorized($user);
+
+    }
 }

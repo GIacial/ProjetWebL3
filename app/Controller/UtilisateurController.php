@@ -49,11 +49,48 @@ class UtilisateurController extends AppController {
             }
         }
     }
+
+    public function gestionAdmin(){
+        $this->set('user' , $this->Utilisateur->find('all'));  
+    }
+
+    public function suppUser($id){
+        if($id != $this->Auth->user()['id']){
+
+            $this->Utilisateur->Panier->viderPanier($id);
+            $this->Utilisateur->delete($id,false);
+            $this->Flash->success('Vous avez supprimé le profil');
+        }
+        else{
+             $this->Flash->error('Erreur lors de la suppression du profil');
+        }
+        $this->redirect(array('action' => 'gestionAdmin'));
+    }
     
     public function beforeFilter(){
     	parent::beforeFilter();
+        $this->Auth->allow('index');
 		$this->Auth->allow('addUser');// les actions 'index' de TOUS les controllers sont accessibles sans avoir besoin d'être 		authentifié
 	}
+
+     public function isAuthorized($user){
+        
+        if ($this->action === 'deconnexion')return true;
+        if ($this->action === 'addUser')return true;
+        if ($this->action === 'connexion')return true;
+        if ($this->action === 'index')return true;
+        if ($this->action === 'gestionAdmin'){
+            if($user['isadmin']) return true;
+        }
+        if ($this->action === 'suppUser'){
+            if($user['isadmin']) return true;
+        }
+        if ($this->action === 'profil')return true; //si pas coo deja rediriger vers connexion
+
+
+        return parent::isAuthorized($user);
+
+    }
 }
 
 
