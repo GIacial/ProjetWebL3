@@ -1,11 +1,9 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: jregnier
- * Date: 22/02/17
- * Time: 15:23
- */
+/*  Moise Lucille
+    Regnier Jérémy
+*/
+    
 class Panier extends AppModel{
 
     public $useTable = 'Panier';   //nom de la table sans le prefixe tp

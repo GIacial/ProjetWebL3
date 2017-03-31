@@ -1,6 +1,9 @@
 <div>
     
 	<?php
+	/*  Moise Lucille
+    	Regnier Jérémy
+	*/
 
 	 echo $this->Form->create('Panier');
 	 echo '<table>';

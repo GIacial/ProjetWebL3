@@ -1,11 +1,8 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: jregnier
- * Date: 22/02/17
- * Time: 15:17
- */
+/*  Moise Lucille
+    Regnier Jérémy
+*/
 class Produit extends AppModel{
 
     public $useTable = 'Produits';   //nom de la table sans le prefixe tp

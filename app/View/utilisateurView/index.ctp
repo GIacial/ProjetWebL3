@@ -1,4 +1,7 @@
 <?php
+/*  Moise Lucille
+    Regnier Jérémy
+*/
 	$user = AuthComponent::user();
 
 	if($user == null){

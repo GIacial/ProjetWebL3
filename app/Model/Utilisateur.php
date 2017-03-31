@@ -1,4 +1,9 @@
 <?php
+
+/*  Moise Lucille
+    Regnier Jérémy
+*/
+
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');   //pour le hasher
 
 class Utilisateur extends AppModel

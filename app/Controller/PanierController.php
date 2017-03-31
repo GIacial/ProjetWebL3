@@ -1,4 +1,7 @@
 <?php
+/*  Moise Lucille
+    Regnier Jérémy
+*/
 
 class PanierController extends AppController {
 

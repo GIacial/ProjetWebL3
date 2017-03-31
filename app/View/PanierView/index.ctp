@@ -1,6 +1,8 @@
 <?php
 
-
+/*  Moise Lucille
+    Regnier Jérémy
+*/
 echo '<h1> Panier de '.AuthComponent::user()['nom'].' '.AuthComponent::user()['prenom'].'</h1><hr/>';
 
 $prixTotal = 0;

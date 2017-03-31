@@ -1,4 +1,7 @@
 <?php
+/*  Moise Lucille
+    Regnier Jérémy
+*/
 $tab = AuthComponent::user();
 if($tab == NULL){
     echo $this->Html->image('bandeau_pas_co.jpg', ['alt'=>'Bandeau']);

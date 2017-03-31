@@ -1,4 +1,7 @@
 <?php
+/*  Moise Lucille
+    Regnier Jérémy
+*/
 $user = AuthComponent::user();
 echo $this->Form->create('Utilisateur');
 echo $this->Form->input('identifiant', array('default'=> $user['identifiant']));

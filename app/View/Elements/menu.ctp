@@ -1,4 +1,7 @@
 <?php
+/*  Moise Lucille
+    Regnier Jérémy
+*/
 $tab = AuthComponent::user();
 echo '<nav>';
     echo '<ul>';

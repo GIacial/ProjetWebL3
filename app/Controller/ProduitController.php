@@ -1,11 +1,9 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: jregnier
- * Date: 22/02/17
- * Time: 15:34
- */
+/*  Moise Lucille
+    Regnier Jérémy
+*/
+    
 class ProduitController extends AppController {
 
     public $uses = array('Produit');      //Model a utiliser
