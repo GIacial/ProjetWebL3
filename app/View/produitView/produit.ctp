@@ -16,11 +16,16 @@ echo '<thead><tr>
 for( $i = 0 ; $i< count($tab) ; $i++){
 	 	echo '<tr>';
 	 	echo '<td>'.$tab[$i]['Produit']['libelle'].'</td><td>'.$tab[$i]['Produit']['prix'].'€</td>';
-	 	echo '<td>'.$this->Form->number('nombre.',array(
+	 	/*echo '<td>'.$this->Form->number('nombre.',array(
 	 											'min' => '0',
 	 											'default' => '0',
 	 											'max' => $tab[$i]['Produit']['stock'],
-	 											));
+	 											));*/
+	 	for($k = 1 ; $k <= $tab[$i]['Produit']['stock'] ; $k++){
+	 		$valeur[$k] = $k;
+	 	}
+	 	echo '<td>'.$this->Form->select('nombre.',$valeur,array('empty' => 0));
+
 	 	echo $this->Form->input('produit_id.',array(
 	 										'default' => $tab[$i]['Produit']['produit_id'],
 	 										'type' => 'hidden',

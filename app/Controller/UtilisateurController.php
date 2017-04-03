@@ -8,6 +8,7 @@
 class UtilisateurController extends AppController {
 
     public $uses = array('Utilisateur');     //Model a utiliser
+    public $components = array('Cookie');
     public $viewPath = 'utilisateurView';    //le nom du sous repertoire des vue du controlleur
 
     
@@ -20,12 +21,27 @@ class UtilisateurController extends AppController {
 //*************************************************************************************************
     
     public function connexion(){
+        $LastLogin ='';
+        $LastLogin = $this->Cookie->read("LastLogin");
+        $this->set("LastLogin", $LastLogin);
+
     	if($this->request->is('post')){
-    		debug($this->request->data);
     		if($this->Auth->login()){
+                $this->Cookie->write("LastLogin",$this->request->data['Utilisateur']['identifiant']);
     			$this->redirect($this->Auth->redirectUrl());
     		}
-    		$this->Flash->error('Impossible de vous identifier');
+            if($this->request->data['Utilisateur']['identifiant'] == ''){
+    		  $this->Flash->error('Veuillez entrer votre identifiant');
+            }
+            else{
+                if($this->request->data['Utilisateur']['motdepasse'] == ''){
+
+                    $this->Flash->error('Veuillez indiquer un mot de passe');
+                }
+                else{
+                    $this->Flash->error('Impossible de vous identifier');
+                }
+            }
     	}
 
     }
@@ -45,7 +61,20 @@ class UtilisateurController extends AppController {
     			$this->Flash->success('Vous êtes inscrit');
     			$this->redirect(array('action' => 'index'));
     		}
-    		$this->Flash->error('Erreur lors de l\'ajout de l\'utilsateur');
+            debug($this->request->data);
+            if($this->request->data['Utilisateur']['identifiant'] == ''){
+              $this->Flash->error('Veuillez entrer votre identifiant');
+            }
+            else{
+                if($this->request->data['Utilisateur']['motdepasse'] == ''){
+
+                        $this->Flash->error('Veuillez indiquer un mot de passe');
+                }
+                else{
+                       $this->Flash->error('Erreur lors de l\'ajout de l\'utilsateur');
+                }
+            }
+    		
     	}
     }
     

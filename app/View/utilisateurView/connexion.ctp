@@ -10,7 +10,7 @@
             <?php echo __('Please enter your username and password'); ?>
         </legend>
         <?php 
-	        echo $this->Form->input('identifiant');
+	        echo $this->Form->input('identifiant', array('default' => $LastLogin, ));
 	        echo $this->Form->input('motdepasse', array( 'type'=> 'password',
 	        											));
     	?>
