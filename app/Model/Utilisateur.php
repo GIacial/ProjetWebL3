@@ -6,8 +6,8 @@
 
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');   //pour le hasher
 
-class Utilisateur extends AppModel
-{
+class Utilisateur extends AppModel{
+    
 	public $useTable = 'utilisateurs';
     public $primaryKey = 'id';
     public $recursive = -1;
@@ -22,11 +22,14 @@ class Utilisateur extends AppModel
     
     );
 
+    
+//*************************************************************************************************
+    
     function beforeSave($options = array()){
         //verification
         if($this->data[$this->alias]['identifiant'] == "") return false;
 
-        //tra,sformation
+        //transformation
         if($this->data[$this->alias]['nom'] == ""){
             $this->data[$this->alias]['nom'] = null;
         }
@@ -39,16 +42,19 @@ class Utilisateur extends AppModel
 
          if(AuthComponent::user() != null){
             if(!AuthComponent::user()['isadmin']){
-                 $this->data[$this->alias]['isadmin'] = false;  //si tu n'est pas un admin tu ne peux pas créé d'admin
+                 $this->data[$this->alias]['isadmin'] = false;  //si tu n'es pas un admin tu ne peux pas créer d'admin
             }
          }
          else{
-             $this->data[$this->alias]['isadmin'] = false;  //si tu n'est pas un admin tu ne peux pas créé d'admin
+             $this->data[$this->alias]['isadmin'] = false;  //si tu n'es pas un admin tu ne peux pas créer d'admin
          }
 
         return true;
     }
 
+    
+//*************************************************************************************************
+    
     function beforeSaveAddUser($data){
         if($data[$this->alias]['motdepasse'] == "") return null;
         $passwordHasher = new BlowfishPasswordHasher();
@@ -56,6 +62,9 @@ class Utilisateur extends AppModel
         return $data;
     }
 
+    
+//*************************************************************************************************
+  
     function addUser($data){
         $data = $this->beforeSaveAddUser($data);
         if($data == null) return false;

@@ -9,6 +9,9 @@ class ProduitController extends AppController {
     public $uses = array('Produit');      //Model a utiliser
     public $viewPath = 'produitView';    //le nom du sous repertoire des vue du controlleur
 
+    
+//*************************************************************************************************
+
     public function index(){
     	if($this->request->is('post')){
     		debug($this->request->data);
@@ -18,18 +21,14 @@ class ProduitController extends AppController {
 
     				$this->Produit->Panier->id = null ;
     				if($this->request->data['Panier']['nombre'][$i] != 0){
-
-    						$response['Panier']['nombre'] = $this->request->data['Panier']['nombre'][$i];
-    						$response['Panier']['produit_id'] = $this->request->data['Panier']['produit_id'][$i];
-    					
-    					
+                        $response['Panier']['nombre'] = $this->request->data['Panier']['nombre'][$i];
+                        $response['Panier']['produit_id'] = $this->request->data['Panier']['produit_id'][$i];
     					$ok = $this->Produit->Panier->addPanier($response) ;
 
     				}
-
     			}
-	    		
     		}
+            
     		if($ok){
     			$this->Flash->success('Ajout au panier effectué');
     			$this->redirect(array('action' => 'index'));
@@ -44,7 +43,9 @@ class ProduitController extends AppController {
         $this->render('produit');
     }
 
-     public function isAuthorized($user){
+    
+//************************************************************************************************* 
+    public function isAuthorized($user){
       
         if(!$user['isadmin']) return true;
         
