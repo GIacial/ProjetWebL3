@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 08 Mars 2017 à 13:56
+-- Généré le :  Lun 03 Avril 2017 à 12:41
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -33,13 +33,6 @@ CREATE TABLE `l31617_panier` (
   `nombre` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Contenu de la table `l31617_panier`
---
-
-INSERT INTO `l31617_panier` (`panier_id`, `produit_id`, `client_id`, `nombre`) VALUES
-(1, 1, 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -59,7 +52,10 @@ CREATE TABLE `l31617_produits` (
 
 INSERT INTO `l31617_produits` (`produit_id`, `libelle`, `prix`, `stock`) VALUES
 (1, 'Peluche Assassine', '10.99', 2),
-(2, 'Licorne Peluche', '25.99', 0);
+(2, 'Licorne Peluche', '25.99', 2),
+(3, 'Cousin Arc-en-ciel', '5.99', 15),
+(4, 'Peluche dauphin', '9.99', 0),
+(5, 'Peluche Ourson', '25.26', 3);
 
 -- --------------------------------------------------------
 
@@ -84,9 +80,9 @@ CREATE TABLE `l31617_utilisateurs` (
 --
 
 INSERT INTO `l31617_utilisateurs` (`id`, `identifiant`, `motdepasse`, `nom`, `prenom`, `anniversaire`, `isadmin`, `created`, `modified`) VALUES
-(1, 'admin', 'nimda', NULL, NULL, NULL, 1, '2017-02-18 19:16:50', '2017-02-18 19:16:50'),
-(2, 'gilles', 'sellig', 'Subrenat', 'Gilles', '2000-01-01', 0, '2017-02-18 19:21:16', '2017-02-18 19:21:16'),
-(3, 'mathias', 'saihtam', 'Mathias', 'Brousset', '2001-01-02', 0, '2017-02-18 19:21:16', '2017-02-18 19:21:16');
+(5, 'gilles', '$2a$10$oA8aC3cfKOF0IV8eBir2C.t4L1t15mnRMlISDFevOptlNOOQr.6bC', 'Subrenata', 'Gilles', '2000-03-08', 0, '2017-03-08 16:43:31', '2017-03-23 16:01:07'),
+(8, 'admin', '$2a$10$z/YDCBBMWyn9suUMlZWaieZxm4nHTGhRBEPVa4IDrHxdAgVWaYVdS', NULL, NULL, '2017-03-08', 1, '2017-03-08 16:59:23', '2017-03-08 16:59:23'),
+(10, 'mathias', '$2a$10$cuxuHAlBB4.oZsHI7V1CJ.CydrejbvHKW8NKsCPNGXGZ6UQS7XHMe', 'Mathias', 'Brousset', '2017-03-08', 0, '2017-03-08 17:02:43', '2017-03-08 17:02:43');
 
 --
 -- Index pour les tables exportées
@@ -121,17 +117,17 @@ ALTER TABLE `l31617_utilisateurs`
 -- AUTO_INCREMENT pour la table `l31617_panier`
 --
 ALTER TABLE `l31617_panier`
-  MODIFY `panier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `panier_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `l31617_produits`
 --
 ALTER TABLE `l31617_produits`
-  MODIFY `produit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `produit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `l31617_utilisateurs`
 --
 ALTER TABLE `l31617_utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Contraintes pour les tables exportées
 --
